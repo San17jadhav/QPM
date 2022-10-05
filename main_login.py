@@ -1,0 +1,34 @@
+import streamlit as st
+import re
+#from firebase import firebase
+
+st.set_page_config(
+    page_title="QPM",
+)
+st.title("Question Paper Maker")
+form = st.form(key='login_form')
+email = form.text_input('Enter Email')
+passwd = form.text_input('Enter Password!',type='password')
+
+form.markdown('***')
+
+submit = form.form_submit_button('Login')
+regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+
+if submit:
+    if email=="" or passwd=="":
+        st.error('Enter all the Details!!')
+    elif re.fullmatch(regex, email)==None:
+        st.error('Invalid Email')
+    else:
+        st.success('Login Successfully!!')
+        
+          
+        '''firebase = firebase.FirebaseApplication('https://xxxxx.firebaseio.com/', None)  
+        data =  { 'UserName': uname,  
+          'Email': email,  
+          'Password': passwd 
+          }  
+        result = firebase.post('/python-sample-ed7f7/Students/',data)
+        st.success('Registered!')'''
+
